@@ -6,23 +6,8 @@ This repository contains small, focused sample programs used in a Database Syste
 
 ### Python DB-API MySQL Example
 - Path: `python-db-api/mysql_connect.py`
-- Purpose: demonstrates how to connect to a MySQL server using Python DB-API (`mysql-connector-python`), execute a query, fetch rows, and close resources safely.
+- Purpose: demonstrates how to connect to a MySQL server using Python DB-API (`mysql-connector-python`).
 
-The script currently:
-- Connects to MySQL on `127.0.0.1:3306`
-- Uses database `company`
-- Runs `SELECT * FROM department`
-- Prints rows one by one using `fetchone()` in a loop
-- Closes cursor/connection in a safe `try/except/finally` flow
-
-## Project Structure
-
-```text
-courses-database-systems/
-├─ README.md
-└─ python-db-api/
-   └─ mysql_connect.py
-```
 
 ## Prerequisites
 
@@ -66,7 +51,7 @@ If successful, rows from `department` are printed and then:
 MySQL connection closed.
 ```
 
-## Common Issues
+## 常見問題
 
 - Authentication error: verify username/password and auth plugin settings.
 - Connection refused: verify MySQL is running and listening on the configured host/port.
