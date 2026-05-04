@@ -2,12 +2,16 @@
 
 This repository contains small, focused sample programs used in a Database Systems course.
 
-## Current Sample
+## Current Samples
+
+### Company Sample Database (SQL Dump)
+- Path: `company.sql`
+- Purpose: creates and populates the `company` database used by course examples.
+- Includes tables such as `department`, `employee`, `project`, `dependent`, `dept_locations`, and `works_on`.
 
 ### Python DB-API MySQL Example
 - Path: `python-db-api/mysql_connect.py`
 - Purpose: demonstrates how to connect to a MySQL server using Python DB-API (`mysql-connector-python`).
-
 
 ## Prerequisites
 
@@ -25,6 +29,26 @@ cd python-db-api
 python -m pip install mysql-connector-python
 ```
 
+## Initialize Database
+
+Import the SQL dump from the repository root:
+
+```bash
+mysql -u root -p < company.sql
+```
+
+Or with explicit host/port:
+
+```bash
+mysql -h 127.0.0.1 -P 3306 -u root -p < company.sql
+```
+
+After import, verify quickly:
+
+```bash
+mysql -u root -p -e "USE company; SELECT COUNT(*) AS departments FROM department;"
+```
+
 ## Configure Connection
 
 Open `python-db-api/mysql_connect.py` and update the `config` dictionary in `test_connection()`:
@@ -35,7 +59,7 @@ Open `python-db-api/mysql_connect.py` and update the `config` dictionary in `tes
 - `password`
 - `database`
 
-Make sure the selected database/table exists (the current query expects a `department` table).
+Set `database` to `company` if you imported `company.sql` without changes.
 
 ## Run
 
@@ -55,7 +79,7 @@ MySQL connection closed.
 
 - Authentication error: verify username/password and auth plugin settings.
 - Connection refused: verify MySQL is running and listening on the configured host/port.
-- Unknown database/table: create the database/table or update the query/config values.
+- Unknown database/table: run `company.sql` again, or update query/config values.
 - Missing package: install `mysql-connector-python` in the active Python environment.
 
 ## Notes
