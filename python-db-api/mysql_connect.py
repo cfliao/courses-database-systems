@@ -25,6 +25,7 @@ def test_connection() -> None:
                  if row == None:
                     break
                  print(row)
+            # 如何轉換db欄位資料為特定型別?
             cursor.close()
 
     except Error as exc:
