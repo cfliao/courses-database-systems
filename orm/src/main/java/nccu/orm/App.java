@@ -1,7 +1,9 @@
 package nccu.orm;
 
 import nccu.orm.entity.Department;
+import nccu.orm.entity.Employee;
 import nccu.orm.repository.DepartmentRepository;
+import nccu.orm.repository.EmployeeRepository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -17,20 +19,26 @@ public class App {
             try (emf) {
                 EntityManager em = emf.createEntityManager();
                 try (em) {
-                    DepartmentRepository repository = new DepartmentRepository(em);
+                    DepartmentRepository departmentRepository = new DepartmentRepository(em);
+                    EmployeeRepository employeeRepository = new EmployeeRepository(em);
 
-                    List<Department> departments = repository.findAll();
-                    System.out.println("All departments in Company database:");
-                    departments.forEach(System.out::println);
+                    // List<Department> departments = departmentRepository.findAll();
+                    // System.out.println("All departments in Company database:");
+                    // departments.forEach(System.out::println);
 
-                    Department research = repository.findById(5);
+                    Department research = departmentRepository.findById(5);
                     System.out.println("\nDepartment with dnumber=5:");
                     System.out.println(research != null ? research : "No record found");
+
+                    List<Employee> employees = employeeRepository.findAll();
+                    System.out.println("\nAll employees in Company database:");
+                    employees.forEach(System.out::println);
+
+                    //System.out.println(research.getManager().getSsn());
                 }
             }
         } catch (Exception ex) {
             System.err.println("Failed to start ORM demo. Check MySQL credentials in src/main/resources/META-INF/persistence.xml.");
-            System.err.println("Current defaults assume: jdbc:mysql://localhost:3306/Company, user=root, password=nccutest.");
             ex.printStackTrace();
         }
     }

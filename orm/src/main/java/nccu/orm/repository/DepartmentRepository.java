@@ -16,7 +16,7 @@ public class DepartmentRepository {
 
     public List<Department> findAll() {
         return entityManager
-                .createQuery("SELECT d FROM Department d ORDER BY d.dnumber", Department.class)
+                .createQuery("SELECT d FROM Department d ORDER BY d.id", Department.class)
                 .getResultList();
     }
 

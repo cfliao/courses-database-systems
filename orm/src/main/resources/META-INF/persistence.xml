@@ -6,10 +6,11 @@
 
     <persistence-unit name="companyPU" transaction-type="RESOURCE_LOCAL">
         <class>nccu.orm.entity.Department</class>
+        <class>nccu.orm.entity.Employee</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Company?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/company"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="nccutest"/>
 
