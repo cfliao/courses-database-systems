@@ -20,7 +20,7 @@ public class App {
                 EntityManager em = emf.createEntityManager();
                 try (em) {
                     DepartmentRepository departmentRepository = new DepartmentRepository(em);
-                    EmployeeRepository employeeRepository = new EmployeeRepository(em);
+                    //EmployeeRepository employeeRepository = new EmployeeRepository(em);
 
                     // List<Department> departments = departmentRepository.findAll();
                     // System.out.println("All departments in Company database:");
@@ -30,8 +30,8 @@ public class App {
                     System.out.println("\nDepartment with dnumber=5:");
                     System.out.println(research != null ? research : "No record found");
 
-                    List<Employee> employees = employeeRepository.findAll();
-                    System.out.println("\nAll employees in Company database:");
+                    List<Employee> employees = research.getEmployees();
+                    System.out.println("\nAll employees in Research Department:");
                     employees.forEach(System.out::println);
 
                     //System.out.println(research.getManager().getSsn());

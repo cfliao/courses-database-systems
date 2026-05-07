@@ -1,11 +1,14 @@
 package nccu.orm.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -27,14 +30,18 @@ public class Department {
     @Temporal(TemporalType.DATE)
     private Date mgrstartdate;
 
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    private List<Employee> employees;
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
     public Department() {
     }
 
-    public Department(int dnumber, String name, Employee manager, Date mgrstartdate) {
-        this.id = dnumber;
-        this.name = name;
-        this.manager = manager;
-        this.mgrstartdate = mgrstartdate;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     public Integer getId() {

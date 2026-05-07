@@ -6,6 +6,8 @@ import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -31,6 +33,10 @@ public class Employee {
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
+    @ManyToOne
+    @JoinColumn(name = "dno", referencedColumnName = "dnumber")
+    private Department department;
+
     @Column(name = "address")
     private String address;
 
@@ -43,56 +49,88 @@ public class Employee {
     @Column(name = "superssn", columnDefinition = "CHAR(9)")
     private String superssn;
 
-    @Column(name = "dno")
-    private Integer dno;
-
     public Employee() {
     }
 
-    public Employee(String ssn, String fname, String minit, String lname,
-                    Date bdate, String address, String sex,
-                    BigDecimal salary, String superssn, Integer dno) {
-        this.ssn = ssn;
-        this.fname = fname;
-        this.minit = minit;
-        this.lname = lname;
-        this.birthday = bdate;
-        this.address = address;
-        this.gender = sex;
-        this.salary = salary;
-        this.superssn = superssn;
-        this.dno = dno;
+    public Department getDepartment() {
+        return department;
     }
 
-    public String getSsn() { return ssn; }
-    public void setSsn(String ssn) { this.ssn = ssn; }
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
-    public String getFname() { return fname; }
-    public void setFname(String fname) { this.fname = fname; }
+    public String getSsn() {
+        return ssn;
+    }
 
-    public String getMinit() { return minit; }
-    public void setMinit(String minit) { this.minit = minit; }
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
 
-    public String getLname() { return lname; }
-    public void setLname(String lname) { this.lname = lname; }
+    public String getFname() {
+        return fname;
+    }
 
-    public Date getBirthday() { return birthday; }
-    public void setBirthday(Date bdate) { this.birthday = bdate; }
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
 
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
+    public String getMinit() {
+        return minit;
+    }
 
-    public String getGender() { return gender; }
-    public void setGender(String sex) { this.gender = sex; }
+    public void setMinit(String minit) {
+        this.minit = minit;
+    }
 
-    public BigDecimal getSalary() { return salary; }
-    public void setSalary(BigDecimal salary) { this.salary = salary; }
+    public String getLname() {
+        return lname;
+    }
 
-    public String getSuperssn() { return superssn; }
-    public void setSuperssn(String superssn) { this.superssn = superssn; }
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
 
-    public Integer getDno() { return dno; }
-    public void setDno(Integer dno) { this.dno = dno; }
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date bdate) {
+        this.birthday = bdate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String sex) {
+        this.gender = sex;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public String getSuperssn() {
+        return superssn;
+    }
+
+    public void setSuperssn(String superssn) {
+        this.superssn = superssn;
+    }
 
     @Override
     public String toString() {
@@ -105,8 +143,8 @@ public class Employee {
                 ", address='" + address + '\'' +
                 ", sex='" + gender + '\'' +
                 ", salary=" + salary +
-                ", superssn='" + superssn + '\'' +
-                ", dno=" + dno +
+                ", superssn='" + superssn + '\'' + 
+                ", department='" + department.getName() + '\'' + 
                 '}';
     }
 }
