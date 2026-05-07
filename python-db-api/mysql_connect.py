@@ -9,8 +9,8 @@ def test_connection() -> None:
     config = {
         "host": "127.0.0.1",
         "port": 3306,
-        "user": "yourusername",
-        "password": "yourpassword",
+        "user": "root",
+        "password": "nccutest",
         "database": "company",
     }
 
